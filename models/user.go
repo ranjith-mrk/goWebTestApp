@@ -9,13 +9,13 @@ type User struct {
   gorm.Model
   FirstName string
   LastName string
-  email string
+  Email string
 }
 
 
-func (u User) fullName() string {
-  return (u.FirstName +  u.LastName)
-}
+// func (u User) fullName() string {
+//   return (u.FirstName +  u.LastName)
+// }
 
 
 

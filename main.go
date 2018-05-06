@@ -9,7 +9,6 @@ import (
   "encoding/json"
   "github.com/jinzhu/gorm"
    _ "github.com/go-sql-driver/mysql"
-  _ "github.com/jinzhu/gorm/dialects/mysql"
   "github.com/ranjith-mrk/goWebTestApp/models"
   // "controllers"
   // "html/template"
@@ -47,21 +46,20 @@ func registerRoutes() {
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
   fmt.Printf("Home handler is called")
-  vegetables := make(map[string]int)
-  vegetables["Carrats"] = 10
-  vegetables["Beets"] = 0
-  jData, err := json.Marshal(vegetables)
-  if err != nil {
-      panic(err)
-      return
-  }
+  // vegetables := make(map[string]int)
+  // vegetables["Carrats"] = 10
+  // // vegetables["Beets"] = 0
+  // jData, err := json.Marshal(vegetables)
+  // if err != nil {
+  //     panic(err)
+  //     return
+  // }
 
-  fmt.Printf("jdata", jData)
+  // fmt.Printf("jdata", jData)
   // t := template.New("some template")
   // t, _ = t.ParseFiles("views/dashboards/index.html")
   // t.Execute(w, nil)
-  w.Header().Set("Content-Type", "application/json")
-  w.Write(jData)
+
 
     db, _ := gorm.Open("mysql", "root:@/test?charset=utf8&parseTime=True&loc=Local")
   defer db.Close()
@@ -69,10 +67,26 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
     // Migrate the schema
   // db.AutoMigrate(&Product{})
 
-  db.AutoMigrate(&models.User{})
+  // db.AutoMigrate(&models.User{})
 
   // // Create
   // db.Create(&Product{Code: "L1212", Price: 1000})
+  
+
+  var user models.User
+
+  db.First(&user, 1)
+
+  jData, err := json.Marshal(user)
+  if err != nil {
+      panic(err)
+      return
+  }
+  fmt.Printf("jdata", jData)
+  w.Header().Set("Content-Type", "application/json")
+  w.Write(jData)
+
+  fmt.Printf("%+v\n", user)
 
   // db.First(&product_data, 1) // find product with id 1
 
