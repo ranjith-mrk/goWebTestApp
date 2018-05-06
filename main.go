@@ -10,6 +10,7 @@ import (
   "github.com/jinzhu/gorm"
    _ "github.com/go-sql-driver/mysql"
   _ "github.com/jinzhu/gorm/dialects/mysql"
+  "github.com/ranjith-mrk/goWebTestApp/models"
   // "controllers"
   // "html/template"
 )
@@ -66,13 +67,15 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
   defer db.Close()
 
     // Migrate the schema
-  db.AutoMigrate(&Product{})
+  // db.AutoMigrate(&Product{})
 
-  // Create
-  db.Create(&Product{Code: "L1212", Price: 1000})
+  db.AutoMigrate(&models.User{})
 
-  db.First(&product_data, 1) // find product with id 1
+  // // Create
+  // db.Create(&Product{Code: "L1212", Price: 1000})
 
-  fmt.Printf("%+v\n", product_data)
-  
+  // db.First(&product_data, 1) // find product with id 1
+
+  // fmt.Printf("%+v\n", product_data)
+
 }
