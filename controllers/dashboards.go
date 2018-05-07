@@ -1,9 +1,9 @@
-package controllers
+// package controllers
 
-import (
-  "fmt"
-)
+// import (
+//   "fmt"
+// )
 
-func index(w http.ResponseWriter, r *http.Request) {
-  fmt.Printf("*********")
-}
+// func index(w http.ResponseWriter, r *http.Request) {
+//   fmt.Printf("*********")
+// }
