@@ -13,9 +13,9 @@ type User struct {
 }
 
 
-// func (u User) fullName() string {
-//   return (u.FirstName +  u.LastName)
-// }
+func (u User) fullName() string {
+  return (u.FirstName +  u.LastName)
+}
 
 
 
